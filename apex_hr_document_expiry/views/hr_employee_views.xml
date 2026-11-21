@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_employee_view_form_inherit_documents" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.documents</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_documents" type="object"
+                        class="oe_stat_button" icon="fa-id-card"
+                        groups="hr.group_hr_user">
+                    <field name="document_count" widget="statinfo" string="Documents"/>
+                </button>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Documents" name="expiry_documents" groups="hr.group_hr_user">
+                    <field name="document_ids" context="{'default_employee_id': id}">
+                        <list decoration-danger="state == 'expired'"
+                              decoration-warning="state == 'expiring'"
+                              decoration-muted="state == 'renewed'">
+                            <field name="document_type"/>
+                            <field name="document_number"/>
+                            <field name="issue_date"/>
+                            <field name="expiry_date"/>
+                            <field name="days_left"/>
+                            <field name="state" widget="badge"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
