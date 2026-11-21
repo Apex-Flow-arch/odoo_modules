@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_hr_employee_document"
+              name="Document Expiry"
+              parent="hr.menu_hr_root"
+              action="hr_employee_document_action"
+              groups="hr.group_hr_user"
+              sequence="25"/>
+</odoo>
